@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
     public static final String LOGINACTIVITY = "LoginActivity";
     public static final String SUCCESS = "Success?";
+    public static final String ID = "Id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +28,23 @@ public class LoginActivity extends AppCompatActivity {
         create_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Log.d(LOGINACTIVITY, "onClick called");
                 EditText username = findViewById(R.id.username);
                 String name = username.getText().toString();
                 Log.d(LOGINACTIVITY, "username is " + name);
                 EditText password = findViewById(R.id.password);
                 String pword = password.getText().toString();
-                Log.d(LOGINACTIVITY, "passworid is " + password);
+                Log.d(LOGINACTIVITY, "password is " + password);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Welcome to Login Screen");
                 builder.setMessage("You enter " + name + " for the name and " + pword + " for the password");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d(LOGINACTIVITY, "onClick on dialog called");
                         Intent intent = new Intent();
                         Bundle bundle = new Bundle();
+                        bundle.putInt(ID, Integer.parseInt(name));
                         bundle.putBoolean(SUCCESS, true);
                         intent.putExtras(bundle);
                         getIntent().putExtra(SUCCESS, true);
@@ -53,14 +55,5 @@ public class LoginActivity extends AppCompatActivity {
                 builder.show();
             }
         });
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-        builder.setTitle("Welcome to Login Screen");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        builder.show();*/
     }
 }
