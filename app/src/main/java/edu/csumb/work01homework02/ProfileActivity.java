@@ -3,6 +3,7 @@ package edu.csumb.work01homework02;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -24,25 +25,13 @@ public class ProfileActivity extends AppCompatActivity {
         Log.d(PROFILEACTIVITY, "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        if(getIntent().getExtras() == null){
-            Toast toast = Toast.makeText(ProfileActivity.this, "Intent is empty", Toast.LENGTH_LONG);
-            toast.show();
+        ArrayList<String> contents = new ArrayList<>();
+        contents = getIntent().getStringArrayListExtra(MainActivity.CONTENTS);
+        TextView textView = findViewById(R.id.profile_view);
+        textView.append("Welcome " + getIntent().getExtras().getInt(MainActivity.CURRENTUSER) + "\n\n");
+        Log.d(PROFILEACTIVITY, "textView appended");
+        for(int i = 0; i < contents.size(); i++){
+            textView.append("Post: " + contents.get(i));
         }
-        //Bundle bundle = getIntent().getExtras();
-
-        //ArrayList<String> contents = bundle.getStringArrayList(MainActivity.CONTENTS);
-        //int currentUser = bundle.getInt(MainActivity.INT);
-
-        //AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
-        //builder.setTitle(0);
-/*        builder.setMessage(contents.size());
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-*/
     }
 }
