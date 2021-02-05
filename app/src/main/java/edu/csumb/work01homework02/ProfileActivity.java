@@ -1,6 +1,8 @@
 package edu.csumb.work01homework02;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -33,5 +35,10 @@ public class ProfileActivity extends AppCompatActivity {
         for(int i = 0; i < contents.size(); i++){
             textView.append("Post: " + contents.get(i));
         }
+    }
+
+    public static Intent getIntent(Context context){
+        Intent intent = new Intent(context.getApplicationContext(), ProfileActivity.class);
+        return intent;
     }
 }

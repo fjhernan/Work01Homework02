@@ -1,12 +1,16 @@
 package edu.csumb.work01homework02;
 
+import android.content.Context;
+import android.content.Intent;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class LoginActivityTest {
+public class ActivityTests {
 
     @Test
     public void checkUsernameTest(){
@@ -44,5 +48,18 @@ public class LoginActivityTest {
         assertTrue(loginActivity.checkPassword("10", 10, lazyPasswords));
         //Test 4
         assertFalse(loginActivity.checkPassword("11", 10, lazyPasswords));
+    }
+
+    @Test
+    public void checkIntentFactoryTest(){
+        //Doesn't work properly.
+        MainActivity mainActivity = new MainActivity();
+        LoginActivity loginActivity = new LoginActivity();
+        ProfileActivity profileActivity = new ProfileActivity();
+        //Context context = mainActivity.getApplicationContext();
+        //Intent intent = new LoginActivity().getIntent(context);
+
+        //Test 1
+        assertNotNull(LoginActivity.getIntent(mainActivity.getApplicationContext()));
     }
 }

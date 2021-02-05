@@ -2,6 +2,7 @@ package edu.csumb.work01homework02;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(MAINACTIVITY, "LoginActivity started");
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new LoginActivity().getIntent(MainActivity.this);
                 Bundle bundle = new Bundle();
                 bundle.putIntegerArrayList(USERS, userIds);
                 intent.putExtras(bundle);
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(MAINACTIVITY, "ProfileActivity called");
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                Intent intent = ProfileActivity.getIntent(MainActivity.this);
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList(CONTENTS, contents);
                 bundle.putInt(CURRENTUSER, currentUser);

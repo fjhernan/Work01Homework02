@@ -2,6 +2,7 @@ package edu.csumb.work01homework02;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -107,6 +108,11 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    public static Intent getIntent(Context context){
+        Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+        return intent;
     }
 
 
