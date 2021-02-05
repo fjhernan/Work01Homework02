@@ -39,14 +39,8 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(LOGINACTIVITY, "onClick called");
                 EditText username = findViewById(R.id.username);
                 String str_name = username.getText().toString();
-                String acceptableValues[] = new String[] {"1","2","3","4","5","6","7","8","9","10"};
-                boolean goodInput = false;
-                for(int i = 0; i < 10; i++){
-                    if(acceptableValues[i].equals(str_name)){
-                        goodInput = true;
-                    }
-                }
-                if(goodInput == true) {
+                final String acceptableNames[] = new String[] {"1","2","3","4","5","6","7","8","9","10"};
+                if(checkUsername(str_name, acceptableNames)) {
                     int name = Integer.parseInt(str_name);
                     Log.d(LOGINACTIVITY, "username is " + name);
                     ArrayList<Integer> userIds =
@@ -55,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                         EditText password = findViewById(R.id.password);
                         String pword = password.getText().toString();
                         Log.d(LOGINACTIVITY, "password is " + password);
-                        if(lazyPasswords.get(name).equals(pword)) {
+                        if(checkPassword(pword, name, lazyPasswords)) {
                             Log.d(LOGINACTIVITY, "password was correct");
                             AlertDialog.Builder builder = new
                                     AlertDialog.Builder(LoginActivity.this);
@@ -94,4 +88,26 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public boolean checkUsername(String inputName, String[] acceptedNames){
+        boolean goodInput = false;
+        for(int i = 0; i < 10; i++){
+            if(acceptedNames[i].equals(inputName)){
+                goodInput = true;
+            }
+        }
+        if(goodInput == true){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkPassword(String inputPassword, int username, ArrayList<String> LazyPassword){
+        if(LazyPassword.get(username).equals(inputPassword)){
+            return true;
+        }
+        return false;
+    }
+
+
 }
